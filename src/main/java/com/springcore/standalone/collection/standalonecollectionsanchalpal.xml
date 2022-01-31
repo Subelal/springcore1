@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:util="http://www.springframework.org/schema/util"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/util
+ http://www.springframework.org/schema/util/spring-util.xsd">
+ 
+<!--  standalone-list -->
+
+   <util:list  list-class="java.util.Vector" id="mybestfriends">
+     <value>soni</value>
+     <value>aman</value>
+     <value>shyam</value>
+     <value>shyam</value>
+     <value>manpreet</value>
+   </util:list>
+<!--    standalone-map -->
+   <util:map  map-class="java.util.HashMap" id="collegefee">
+   <entry key="MCA" value="50000"></entry>
+   <entry key="Bsc-IT" value="45000"></entry>
+   <entry key="Bed" value="30000"></entry>
+   <entry key="MCA" value="50000"></entry>
+   <entry key="Ph.d" value="10000"></entry>
+   </util:map>
+   
+<!--    standalone-set -->
+   <util:set set-class="java.util.LinkedHashSet" id="address">
+     <value>Mumbai</value>
+     <value>Chennai</value>
+     <value>Delhi</value>
+     <value>Alipur</value>
+     <value>Mumbai</value>
+   </util:set>
+   
+<!--    standalone -properties -->
+<util:properties id="dbConfig">
+
+<prop key="spring.datasource.url">jdbc:oracle:thin:@10.10.1.52:1521:posprddb</prop>
+<prop key="spring.datasource.password">reports12345</prop>
+<prop key="spring.datasource.username">reports</prop>
+<prop key="spring.jpa.show-sql">true</prop>
+<prop key="spring.jpa.hibernate.ddl-auto">update</prop>
+<prop key="spring.jpa.properties.hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+<prop key="spring.datasource.driver-class-name">oracle.jdbc.driver.OracleDriver</prop>
+</util:properties>
+ 
+ <bean name="person" class="com.springcore.standalone.collection.Person">
+ <property name="friends">
+ <ref  bean="mybestfriends"/>
+ </property>
+ 
+ <property name="feestructure" ref="collegefee"></property>
+  <property name="address" ref="address"></property>
+  <property name="properties" ref="dbConfig"></property>
+   
+    </bean>
+
+</beans>
